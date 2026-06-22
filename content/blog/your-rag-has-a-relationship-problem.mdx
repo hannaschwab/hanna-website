@@ -1,0 +1,50 @@
+---
+title: "Your RAG Has a Relationship Problem"
+date: "2026-06-08"
+excerpt: "Most RAG implementations fail not because of the retrieval algorithm, but because the data going in was never designed to be retrieved. Here's what that actually means."
+tags: ["AI", "RAG", "Data Engineering", "Microsoft Fabric"]
+---
+
+Most teams implement RAG and immediately ask: why are the answers wrong?
+
+They tune the chunking. They try different embedding models. They add reranking. The answers get slightly better, then plateau.
+
+The problem is usually not the RAG pipeline. It's the data underneath it.
+
+## What RAG actually does
+
+Retrieval-Augmented Generation pulls relevant chunks from your documents and passes them to the model as context. The model then generates an answer based on what it was given.
+
+This means the quality of your answers is bounded by the quality of what gets retrieved. And what gets retrieved depends entirely on how well your documents are structured, chunked, and indexed.
+
+If your documents don't have clear semantic boundaries, retrieval returns irrelevant chunks. If your data model has no concept of "customer" — just IDs scattered across five tables — your agent can't reason about customers.
+
+## The relationship problem
+
+Most enterprise data was designed for transactional systems, not for semantic retrieval.
+
+A product table has a product ID. An orders table has an order ID and a product ID. A customer table has a customer ID. These relationships are implicit in the schema, not explicit in the content.
+
+When you embed a row from the orders table, you embed the order ID, a timestamp, and a product ID. You do not embed "customer X bought product Y." The semantic meaning lives in the join, not the row.
+
+RAG does not do joins.
+
+## What to do instead
+
+Before you build the RAG pipeline, ask: what questions will this system need to answer? Then work backwards to what data shape supports those questions.
+
+For customer-facing questions, you want pre-materialized views that combine the relevant entities into a readable, semantically rich document. A customer record that includes their purchase history, support tickets, and preferences in a single coherent text block is far more retrievable than normalized tables.
+
+This is not new thinking. It's how you'd structure a search index. RAG is a search problem with a language model on top.
+
+## In Microsoft Fabric
+
+Microsoft Fabric gives you the tools to build these pre-materialized documents at scale. You can use notebooks to generate enriched semantic documents from your lakehouse, index them in Azure AI Search, and connect the retrieval layer to your agents or Fabric IQ.
+
+The data engineering work happens before the AI work. That's not a limitation — it's the architecture.
+
+Most RAG failures are data problems wearing an AI costume.
+
+---
+
+I spoke about this at We Are Developers World Congress Europe in June 2026. If you want the full slide deck, connect with me on LinkedIn.
