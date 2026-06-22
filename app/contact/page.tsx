@@ -75,7 +75,8 @@ export default async function Contact({
                   {
                     label: "Consulting",
                     description:
-                      "Data platform strategy and Fabric implementation — reach out via teccle group.",
+                      "Data platform strategy and Fabric implementation — book a call with our solution team.",
+                    url: "https://outlook.office.com/bookwithme/user/0519208b672c4c1d89ed3f086883980d@teccle-group.de?anonymous&ismsaljsauthenabled&ep=pcard",
                   },
                 ].map((item) => (
                   <div key={item.label} className="card p-5">
@@ -85,6 +86,16 @@ export default async function Contact({
                     <p className="text-[#64748b] text-xs leading-relaxed">
                       {item.description}
                     </p>
+                    {"url" in item && item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 mt-2 text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        Book a call →
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
