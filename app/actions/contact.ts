@@ -31,7 +31,7 @@ export async function submitContact(
 
   try {
     await resend.emails.send({
-      from: "hannaschwab.dev <onboarding@resend.dev>",
+      from: "hanna-schwab.com <hello@hanna-schwab.com>",
       to: "hanna.schwab@yahoo.de",
       replyTo: email,
       subject: `[Contact] ${topic} — ${name}`,
