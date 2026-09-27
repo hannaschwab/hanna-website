@@ -22,14 +22,11 @@ export default function Blog() {
   return (
     <div className="pt-24">
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
-          Blog
-        </p>
         <h1 className="text-4xl md:text-5xl font-bold text-[#f1f5f9] mb-6 leading-tight">
           Writing
         </h1>
         <p className="text-xl text-[#94a3b8] max-w-2xl leading-relaxed">
-          On Microsoft Fabric, Azure AI, data engineering, and what's actually
+          On Microsoft Fabric, Azure AI, data engineering, and what&apos;s actually
           happening in the data & AI world. Practical, opinionated, no hype.
         </p>
       </section>

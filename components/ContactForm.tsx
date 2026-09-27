@@ -86,13 +86,13 @@ export default function ContactForm({ defaultTopic }: { defaultTopic?: string })
       </div>
 
       {state.status === "error" && (
-        <p className="text-red-400 text-sm">{state.message}</p>
+        <p role="alert" className="text-red-400 text-sm">{state.message}</p>
       )}
 
       {state.status === "success" && (
-        <div className="bg-green-500/10 border border-green-500/20 rounded-lg px-5 py-4">
+        <div role="status" className="bg-green-500/10 border border-green-500/20 rounded-lg px-5 py-4">
           <p className="text-green-400 text-sm font-medium">Message sent.</p>
-          <p className="text-[#64748b] text-xs mt-1">I'll get back to you within a few days.</p>
+          <p className="text-[#64748b] text-xs mt-1">I&apos;ll get back to you within a few days.</p>
         </div>
       )}
 

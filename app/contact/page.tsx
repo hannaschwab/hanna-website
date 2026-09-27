@@ -29,9 +29,6 @@ export default async function Contact({
     <div className="pt-24">
       {/* Header */}
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
-          Contact
-        </p>
         <h1 className="text-4xl md:text-5xl font-bold text-[#f1f5f9] mb-6 leading-tight">
           Get in Touch
         </h1>
@@ -58,7 +55,7 @@ export default async function Contact({
           <div className="md:col-span-2 space-y-10">
             <div>
               <p className="text-xs text-[#64748b] uppercase tracking-widest mb-6">
-                What I'm open to
+                What I&apos;m open to
               </p>
               <div className="space-y-3">
                 {[
