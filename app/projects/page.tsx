@@ -61,14 +61,11 @@ export default function Projects() {
     <div className="pt-24">
       {/* Header */}
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
-          Projects
-        </p>
         <h1 className="text-4xl md:text-5xl font-bold text-[#f1f5f9] mb-6 leading-tight">
           Communities & Work
         </h1>
         <p className="text-xl text-[#94a3b8] max-w-2xl leading-relaxed">
-          Beyond consulting. Things I've built, communities I run, and writing
+          Beyond consulting. Things I&apos;ve built, communities I run, and writing
           published elsewhere.
         </p>
       </section>
@@ -91,7 +88,6 @@ export default function Projects() {
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1829]/60 to-transparent" />
                   </div>
                 )}
                 <div className="p-6 flex flex-col gap-4 flex-1">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { certifications } from "@/data/projects"
 
@@ -34,16 +35,13 @@ export default function About() {
     <div className="pt-24">
       {/* Header */}
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-blue-400 text-xs font-medium tracking-widest uppercase mb-4">
-          About
-        </p>
         <h1 className="text-3xl md:text-5xl font-bold text-[#f1f5f9] mb-8 max-w-2xl leading-tight">
           Data & AI Lead.
           <br />
           Speaker. Community Builder.
         </h1>
         <p className="text-xl text-[#94a3b8] max-w-2xl leading-relaxed">
-          I'm Hanna Schwab — based in Würzburg, Germany, working at the
+          I&apos;m Hanna Schwab — based in Würzburg, Germany, working at the
           intersection of data engineering, AI systems, and people who need
           both to actually work.
         </p>
@@ -61,13 +59,13 @@ export default function About() {
               production systems.
             </p>
             <p>
-              I've been working in cloud and data for four years. Before that,
-              digital strategy. The common thread is that I don't separate
+              I&apos;ve been working in cloud and data for four years. Before that,
+              digital strategy. The common thread is that I don&apos;t separate
               the technical from the business problem. A data platform that
-              nobody uses is not a platform — it's a cost center.
+              nobody uses is not a platform — it&apos;s a cost center.
             </p>
             <p>
-              I speak at conferences across Europe about what's actually
+              I speak at conferences across Europe about what&apos;s actually
               happening: what Fabric updates matter, why most AI strategies
               fail before the data layer, and how to build multi-agent
               workflows that hold up in production. I try to be specific
@@ -76,11 +74,20 @@ export default function About() {
             <p>
               Outside of work: certified yoga instructor, currently learning
               Hindi and German Sign Language. I believe both slow things down
-              enough to notice what's actually going on.
+              enough to notice what&apos;s actually going on.
             </p>
           </div>
 
           <div className="space-y-8">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+              <Image
+                src="/Hanna MVP.png"
+                alt="Hanna Schwab"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
             {/* Current role */}
             <div className="card p-6">
               <p className="text-xs text-[#64748b] uppercase tracking-widest mb-3">
@@ -164,6 +171,29 @@ export default function About() {
         </div>
       </section>
 
+      {/* Recognition */}
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <p className="text-xs text-[#64748b] uppercase tracking-widest mb-8">
+            Recognition
+          </p>
+          <div className="card p-6 max-w-xl">
+            <p className="text-[#f1f5f9] text-sm font-semibold">
+              Microsoft Foundry MVP
+            </p>
+            <p className="text-[#64748b] text-xs mt-1">Recognized September 2026</p>
+            <a
+              href="https://mvp.microsoft.com/de-DE/MVP/profile/e2d3f9c8-007b-4f13-aa77-2759fd1c30c9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              View Microsoft MVP profile →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Community */}
       <section className="border-t border-white/[0.07]">
         <div className="max-w-6xl mx-auto px-6 py-16">
@@ -224,7 +254,7 @@ export default function About() {
               Want to work together?
             </p>
             <p className="text-[#94a3b8] text-sm">
-              Speaking invitations, community collaborations, or consulting — I'm happy to hear from you.
+              Speaking invitations, community collaborations, or consulting — I&apos;m happy to hear from you.
             </p>
           </div>
           <Link

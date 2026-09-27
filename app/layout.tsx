@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Hanna Schwab — Data & AI Lead, Microsoft Fabric Expert, Speaker",
+    default: "Hanna Schwab — Microsoft Foundry MVP, Data & AI Lead, Speaker",
     template: "%s | Hanna Schwab",
   },
   description:
-    "Data & AI Lead at teccle group. Building data platforms with Microsoft Fabric and Azure AI. International speaker, founder of Global AI Community Würzburg, and Women in Tech advocate.",
+    "Microsoft Foundry MVP and Data & AI Lead at teccle group. Building data platforms with Microsoft Fabric and Azure AI. International speaker and community founder.",
   keywords: [
     "Microsoft Fabric",
     "Data Engineering",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Hanna Schwab",
-    title: "Hanna Schwab — Data & AI Lead, Microsoft Fabric Expert, Speaker",
+    title: "Hanna Schwab — Microsoft Foundry MVP, Data & AI Lead, Speaker",
     description:
-      "Data & AI Lead at teccle group. Building data platforms with Microsoft Fabric and Azure AI. International speaker and Women in Tech advocate.",
+      "Microsoft Foundry MVP and Data & AI Lead at teccle group. Building data platforms with Microsoft Fabric and Azure AI. International speaker and community founder.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hanna Schwab — Data & AI Lead, Microsoft Fabric Expert, Speaker",
+    title: "Hanna Schwab — Microsoft Foundry MVP, Data & AI Lead, Speaker",
     description:
       "Data & AI Lead at teccle group. Building data platforms with Microsoft Fabric and Azure AI.",
   },
@@ -60,9 +60,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
-      <body className="antialiased bg-[#070d1a] text-[#f1f5f9] min-h-screen">
+      <body className="antialiased min-h-screen">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-blue-500 focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+        >
+          Skip to content
+        </a>
         <Navigation />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
       </body>
     </html>

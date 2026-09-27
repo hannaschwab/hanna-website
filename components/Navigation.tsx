@@ -1,114 +1,128 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const links = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/speaking", label: "Speaking" },
-  { href: "/blog", label: "Blog" },
   { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ]
 
+function isActive(pathname: string, href: string) {
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export default function Navigation() {
   const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname])
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#070d1a]/90 backdrop-blur-md border-b border-white/[0.07]"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-[#f1f5f9] font-semibold text-lg tracking-tight hover:text-blue-400 transition-colors"
-        >
-          Hanna Schwab
-          <span className="text-blue-400 ml-0.5">.</span>
-        </Link>
+    <>
+      <aside className="site-sidebar">
+        <div>
+          <Link href="/" className="site-brand">
+            Hanna Schwab<span>.</span>
+          </Link>
+          <p className="site-role">
+            Microsoft Foundry MVP
+            <br />
+            Data & AI Lead
+            <br />
+            Speaker
+          </p>
+        </div>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <li key={link.href}>
+        <nav className="site-nav" aria-label="Main navigation">
+          {links.map((link) => {
+            const active = isActive(pathname, link.href)
+            return (
               <Link
+                key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors ${
-                  pathname === link.href || pathname.startsWith(link.href + "/")
-                    ? "text-[#f1f5f9]"
-                    : "text-[#94a3b8] hover:text-[#f1f5f9]"
-                }`}
+                aria-current={active ? "page" : undefined}
               >
                 {link.label}
               </Link>
-            </li>
-          ))}
-        </ul>
+            )
+          })}
+        </nav>
 
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-[#94a3b8] hover:text-[#f1f5f9] transition-colors p-1"
-          aria-label="Toggle menu"
-        >
-          <div className="w-5 flex flex-col gap-1.5">
-            <span
-              className={`block h-px bg-current transition-all duration-200 ${
-                menuOpen ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`block h-px bg-current transition-all duration-200 ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-px bg-current transition-all duration-200 ${
-                menuOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
+        <div className="site-sidebar-footer">
+          <div className="site-socials">
+            <a
+              href="https://www.linkedin.com/in/hanna-schwab/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://sessionize.com/hanna-schwab173/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sessionize
+            </a>
           </div>
-        </button>
-      </nav>
+          <p>Würzburg, Germany · Europe-wide</p>
+        </div>
+      </aside>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#0d1829] border-b border-white/[0.07] px-6 pb-6">
-          <ul className="flex flex-col gap-4 pt-4">
-            {links.map((link) => (
-              <li key={link.href}>
+      <header className="mobile-header">
+        <Link href="/" className="site-brand" onClick={() => setMenuOpen(false)}>
+          Hanna Schwab<span>.</span>
+        </Link>
+        <button
+          type="button"
+          className="mobile-menu-button"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? "Close" : "Menu"}
+        </button>
+
+        {menuOpen && (
+          <nav id="mobile-navigation" className="mobile-menu" aria-label="Mobile navigation">
+            {links.map((link) => {
+              const active = isActive(pathname, link.href)
+              return (
                 <Link
+                  key={link.href}
                   href={link.href}
-                  className={`text-sm transition-colors ${
-                    pathname === link.href
-                      ? "text-[#f1f5f9]"
-                      : "text-[#94a3b8] hover:text-[#f1f5f9]"
-                  }`}
+                  aria-current={active ? "page" : undefined}
+                  onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </header>
+              )
+            })}
+            <div className="mobile-socials">
+              <a
+                href="https://www.linkedin.com/in/hanna-schwab/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://sessionize.com/hanna-schwab173/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sessionize
+              </a>
+            </div>
+          </nav>
+        )}
+      </header>
+    </>
   )
 }
